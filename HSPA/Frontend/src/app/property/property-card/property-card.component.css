@@ -1,0 +1,14 @@
+.propertyImage{
+  height: 250px;
+  border-radius: 10%;
+}
+
+.propertyPrice{
+  color: rgb(0, 112, 6);
+  margin-bottom: 0%;
+}
+
+.propertyType{
+  color: brown;
+  text-align: right;
+}
