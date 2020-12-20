@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-register',
@@ -6,10 +7,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit {
+  registrationForm: FormGroup;
 
   constructor() { }
 
   ngOnInit() {
+    this.registrationForm = new FormGroup(
+      {
+        userName: new FormControl(null,Validators.required),
+        email: new FormControl(null,[Validators.required,Validators.email]),
+        password: new FormControl(null,[Validators.required,Validators.minLength(8)]),
+        confirmPassword: new FormControl(null,Validators.required),
+        phoneNum: new FormControl(null,[Validators.required,Validators.minLength(10)])
+      },
+      this.passwordMathingValidator
+      );
   }
+
+  passwordMathingValidator(fg: FormGroup): Validators{
+    return fg.get('password').value === fg.get('confirmPassword').value ? null:
+    {notmatched: true};
+  }
+
+  onSubmit(){
+    console.log(this.registrationForm)
+  }
+
+  get userName(){
+    return this.registrationForm.get('userName') as FormControl;
+  }
+
+  get email(){
+    return this.registrationForm.get('email') as FormControl;
+  }
+
+  get password(){
+    return this.registrationForm.get('password') as FormControl;
+  }
+
+  get confirmPassword(){
+    return this.registrationForm.get('confirmPassword') as FormControl;
+  }
+
+  get phoneNum(){
+    return this.registrationForm.get('phoneNum') as FormControl;
+  }
+
+
 
 }
