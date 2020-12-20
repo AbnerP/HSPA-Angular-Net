@@ -10,6 +10,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class UserRegisterComponent implements OnInit {
   registrationForm: FormGroup;
   user: any = {};
+  UserSubmitted:boolean;
 
   constructor(private fb: FormBuilder, private userService:UserServiceService) { }
 
@@ -67,9 +68,15 @@ export class UserRegisterComponent implements OnInit {
 
   onSubmit(){
     console.log(this.registrationForm)
-    this.user = Object.assign(this.user,this.registrationForm.value);
-    this.userService.addUser(this.user);
-    this.registrationForm.reset();
+    this.UserSubmitted = true;
+
+    if (this.registrationForm.valid){
+      this.user = Object.assign(this.user,this.registrationForm.value);
+      this.userService.addUser(this.user);
+      this.registrationForm.reset();
+      this.UserSubmitted = false;
+    }
+
   }
 
 }

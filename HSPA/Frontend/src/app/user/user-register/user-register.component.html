@@ -9,7 +9,7 @@
         <div class="form-group col-12">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" formControlName="userName" >
-            <span class="error-block" *ngIf="!userName.valid && userName.touched">
+            <span class="error-block" *ngIf="!userName.valid && (userName.touched || UserSubmitted)">
               *Name Required
             </span>
         </div>
@@ -17,7 +17,7 @@
         <div class="form-group col-12">
           <label for="email" class="form-label">Email</label>
           <input type="text" class="form-control" formControlName="email">
-          <span class="error-block" *ngIf="!email.valid && email.touched">
+          <span class="error-block" *ngIf="!email.valid && (email.touched || UserSubmitted)">
             <span *ngIf="email.hasError('required')">
               *Email required
             </span>
@@ -30,7 +30,7 @@
         <div class="form-group col-12">
           <label for="passwrod" class="form-label">Password</label>
           <input type="password" class="form-control"formControlName="password">
-          <span class="error-block" *ngIf="!password.valid && password.touched">
+          <span class="error-block" *ngIf="!password.valid && (password.touched || UserSubmitted)">
             <span *ngIf="password.errors['required']">
               *Password required
             </span>
@@ -43,7 +43,7 @@
         <div class="form-group col-12">
           <label for="cpassword" class="form-label">Confirm Password</label>
           <input type="password" class="form-control"formControlName="confirmPassword">
-          <span class="error-block" *ngIf="!confirmPassword.valid && confirmPassword.touched">
+          <span class="error-block" *ngIf="!confirmPassword.valid && (confirmPassword.touched || UserSubmitted)">
             <span *ngIf="confirmPassword.hasError('required')">
               *Required
             </span>
@@ -56,7 +56,7 @@
         <div class="form-group col-12">
           <label for="mobile" class="form-label">Phone #</label>
           <input type="text" class="form-control"formControlName="phoneNum">
-          <span class="error-block" *ngIf="!phoneNum.valid && phoneNum.touched">
+          <span class="error-block" *ngIf="!phoneNum.valid && (phoneNum.touched || UserSubmitted)">
             <span *ngIf="phoneNum.errors['required']">
               *Required
             </span>
