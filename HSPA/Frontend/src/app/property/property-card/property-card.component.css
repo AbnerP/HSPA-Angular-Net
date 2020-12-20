@@ -19,7 +19,6 @@
 
 .card img{
   height: 250px;
-  border-radius: 10%;
   transform: scale(1,1);
   transition-duration: 150ms;
   transition-timing-function: ease-out;

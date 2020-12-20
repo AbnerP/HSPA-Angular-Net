@@ -1,38 +1,49 @@
 [
   {
     "Id":1,
+    "SellRent":1,
     "Name":"Valle House",
     "Type":"House",
-    "Price":250000
+    "Price":250000,
+    "Image":"prop-1"
   },
   {
     "Id":2,
+    "SellRent":2,
     "Name":"Isla Verde",
     "Type":"Apartment",
-    "Price":400000
+    "Price":400000,
+    "Image":"prop-2"
   },
   {
     "Id":3,
+    "SellRent":1,
     "Name":"100 Elmwood Ave",
     "Type":"House",
-    "Price":150000
+    "Price":150000,
+    "Image":"prop-3"
   },
   {
     "Id":4,
+    "SellRent":2,
     "Name":"Barton Street",
     "Type":"House",
     "Price":125000
   },
   {
     "Id":5,
+    "SellRent":1,
     "Name":"Wilder 404",
     "Type":"Apartment",
-    "Price":100000
+    "Price":100000,
+    "Image":"prop-5"
   },
   {
     "Id":6,
+    "SellRent":2,
     "Name":"Coco's Place",
     "Type":"House",
-    "Price":175000
+    "Price":175000,
+    "Image":"house_default"
   }
 ]
