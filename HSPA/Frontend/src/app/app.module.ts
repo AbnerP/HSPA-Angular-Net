@@ -11,7 +11,8 @@ import {HttpClientModule} from '@angular/common/http'
 import { HousingService } from './services/housing.service';
 import {AddPropertyComponent} from './property/add-property/add-property.component';
 import {PropertyDetailComponent} from './property/property-detail/property-detail.component';
-
+import {UserLoginComponent} from './user/user-login/user-login.component';
+import {UserRegisterComponent} from './user/user-register/user-register.component';
 
 
 //Each route is a JS object
@@ -20,7 +21,9 @@ const appRoutes: Routes = [
   {path: 'add-property',component: AddPropertyComponent},
   {path: 'rent-property',component: PropertyListComponent},
   {path: 'property-detail/:id',component: PropertyDetailComponent},
-  {path: '**',component: PropertyListComponent}
+  {path: 'user/login',component: UserLoginComponent},
+  {path: 'user/register',component: UserRegisterComponent},
+  {path: '**',component: PropertyListComponent},
 ]
 
 @NgModule({
@@ -30,7 +33,9 @@ const appRoutes: Routes = [
       PropertyCardComponent,
       PropertyListComponent,
       AddPropertyComponent,
-      PropertyDetailComponent
+      PropertyDetailComponent,
+      UserLoginComponent,
+      UserRegisterComponent
    ],
   imports: [
     BrowserModule,
