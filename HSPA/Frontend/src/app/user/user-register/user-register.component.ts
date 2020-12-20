@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-user-register',
@@ -8,11 +9,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserRegisterComponent implements OnInit {
   registrationForm: FormGroup;
+  user: any = {};
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private userService:UserServiceService) { }
 
   ngOnInit() {
-    this.registrationForm = new FormGroup(
+    /*this.registrationForm = new FormGroup(
       {
         userName: new FormControl(null,Validators.required),
         email: new FormControl(null,[Validators.required,Validators.email]),
@@ -21,20 +23,25 @@ export class UserRegisterComponent implements OnInit {
         phoneNum: new FormControl(null,[Validators.required,Validators.minLength(10)])
       },
       this.passwordMathingValidator
-      );
+      );*/
+
+      this.createRegistrationForm();
   }
 
-  passwordMathingValidator(fg: FormGroup): Validators{
-    return fg.get('password').value === fg.get('confirmPassword').value ? null:
-    {notmatched: true};
-  }
-
-  onSubmit(){
-    console.log(this.registrationForm)
+  createRegistrationForm() {
+    this.registrationForm = this.fb.group({
+      userName: [null,Validators.required],
+      email: [null,[Validators.required,Validators.email]],
+      password: [null,[Validators.required,Validators.minLength(8)]],
+      confirmPassword: [null,Validators.required],
+      phoneNum: [null,[Validators.required,Validators.minLength(10)]]
+    },
+    {validators:this.passwordMathingValidator}
+    );
   }
 
   get userName(){
-    return this.registrationForm.get('userName') as FormControl;
+      return this.registrationForm.get('userName') as FormControl;
   }
 
   get email(){
@@ -53,6 +60,16 @@ export class UserRegisterComponent implements OnInit {
     return this.registrationForm.get('phoneNum') as FormControl;
   }
 
+  passwordMathingValidator(fg: FormGroup): Validators{
+    return fg.get('password').value === fg.get('confirmPassword').value ? null:
+    {notmatched: true};
+  }
 
+  onSubmit(){
+    console.log(this.registrationForm)
+    this.user = Object.assign(this.user,this.registrationForm.value);
+    this.userService.addUser(this.user);
+    this.registrationForm.reset();
+  }
 
 }
