@@ -1,6 +1,38 @@
-.propertyImage{
+.card-img-wrapper{
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-wrapper:hover .card-img-icons{
+  bottom: 0;
+  opacity: 1;
+}
+
+.card:hover img{
   height: 250px;
   border-radius: 10%;
+  transform: scale(1.1,1.1);
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+  opacity: .5;
+}
+
+.card img{
+  height: 250px;
+  border-radius: 10%;
+  transform: scale(1,1);
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+
+.card-img-icons{
+  position:absolute;
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
 }
 
 .propertyPrice{
@@ -12,3 +44,14 @@
   color: brown;
   text-align: right;
 }
+
+.animate{
+  transition: all 150ms ease-in-out;
+}
+
+
+
+
+
+
+
