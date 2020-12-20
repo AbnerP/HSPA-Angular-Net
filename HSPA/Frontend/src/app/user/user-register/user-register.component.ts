@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class UserRegisterComponent implements OnInit {
   registrationForm: FormGroup;
-  user: any = {};
+  user: User;
   UserSubmitted:boolean;
 
   constructor(private fb: FormBuilder, private userService:UserServiceService) { }
@@ -27,6 +28,15 @@ export class UserRegisterComponent implements OnInit {
       );*/
 
       this.createRegistrationForm();
+  }
+
+  userData(): User{
+    return this.user = {
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      phoneNum: this.phoneNum.value
+    }
   }
 
   createRegistrationForm() {
@@ -71,8 +81,8 @@ export class UserRegisterComponent implements OnInit {
     this.UserSubmitted = true;
 
     if (this.registrationForm.valid){
-      this.user = Object.assign(this.user,this.registrationForm.value);
-      this.userService.addUser(this.user);
+      //this.user = Object.assign(this.user,this.registrationForm.value);
+      this.userService.addUser(this.userData());
       this.registrationForm.reset();
       this.UserSubmitted = false;
     }
