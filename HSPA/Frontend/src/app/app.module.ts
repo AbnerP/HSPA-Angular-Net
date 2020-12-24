@@ -16,6 +16,7 @@ import {UserRegisterComponent} from './user/user-register/user-register.componen
 import { UserServiceService } from './services/user-service.service';
 import { HousingService } from './services/housing.service';
 import { AlertifyService } from './services/alertify.service';
+import { AuthService } from './services/auth.service';
 
 
 //Each route is a JS object
@@ -50,7 +51,8 @@ const appRoutes: Routes = [
   providers: [
     HousingService,
     UserServiceService,
-    AlertifyService
+    AlertifyService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
