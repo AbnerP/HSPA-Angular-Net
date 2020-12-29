@@ -1,196 +1,210 @@
-<div class="card">
+<div class="row">
+  <div class="col-8">
+    <div class="card">
 
-  <div class="card-header">
-    List Your Property
-  </div>
-
-  <div class="card-body">
-
-    <form (ngSubmit)="onSubmit()" #Form="ngForm" >
-      <div>
-        <tabset #listingPropertyFormTabs>
-          <tab heading="Basic info" id="tab1">
-            <p>I want to</p>
-            <div class="btn-group" btnRadioGroup>
-              <label class="btn btn-outline-primary mr-2" btnRadio=1 role="button" name="SellRent">Sell</label>
-              <label class="btn btn-outline-primary" btnRadio=2 role="button" name="SellRent">Rent</label>
-            </div>
-
-            <p>BHK</p>
-            <div class="btn-group" btnRadioGroup>
-              <label *ngFor="let bhk of [1,2,3,4]" class="btn btn-outline-primary mr-2" [btnRadio]="bhk" role="button" name="SellRent">{{bhk}}</label>
-            </div>
-
-            <p>Property Type</p>
-            <div class="btn-group" btnRadioGroup>
-              <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary mr-2" [btnRadio]="ptype" role="button" name="SellRent">{{ptype}}</label>
-            </div>
-
-            <p>Property Type</p>
-            <div class="btn-group" btnRadioGroup>
-              <label *ngFor="let ftype of furnishTypes" class="btn btn-outline-primary mr-2" [btnRadio]="ftype" role="button" name="SellRent">{{ftype}}</label>
-            </div>
-
-            <div class="form-group col-12">
-              <label for="name">Building/Society/Project</label>
-              <input type="text" class="form-control" #propName="ngModel" ngModel name="Name" minlength='5' required>
-              <span *ngIf="!propName.valid && propName.touched" class="error-block">
-                <span *ngIf="propName.errors.required">Please provide name</span>
-                <span *ngIf="propName.errors.minlength">Name must be atleast 5 characters long</span>
-              </span>
-            </div>
-
-            <div class="form-group col-12">
-              <label for="price">City</label>
-              <input type="text" class="form-control" >
-            </div>
-
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1)">Next</button>
-            </div>
-          </tab>
-
-          <tab heading="Pricing and Area">
-            <div class="form-group col-12">
-              <label>Price (in USD)</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Security (in USD)</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Maintenance (in USD)</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Built Area (in Sqr Feet)</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Carpet Area(in Sqr Feet)</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0)">Back</button>
-            </div>
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2)">Next</button>
-            </div>
-          </tab>
-
-          <tab heading="Address">
-            <div class="form-group col-12">
-              <label>Floor</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Total Floor</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Address</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Landmark</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1)">Back</button>
-            </div>
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3)">Next</button>
-            </div>
-          </tab>
-
-          <tab heading="Other Details">
-            <p>Ready to Move</p>
-            <div class="btn-group" btnRadioGroup>
-              <label class="btn btn-outline-primary mr-2" btnRadio=1 role="button" name="RTM">Yes</label>
-              <label class="btn btn-outline-primary" btnRadio=2 role="button" name="RTM">No</label>
-            </div>
-
-            <div class="form-group col-3">
-              <label>Possession/Avaialble From</label>
-              <input type="text"
-                  placeholder="mm/dd/yyyy"
-                  class="form-control"
-                  bsDatepicker [bsConfig]="{containerClass: 'theme-dark-blue'}">
-            </div>
-
-            <div class="form-group col-12">
-              <label>Age of Property</label>
-              <input type="text" class="form-control">
-            </div>
-
-            <p>Gated Community</p>
-            <div class="btn-group" btnRadioGroup>
-              <label class="btn btn-outline-primary mr-2"
-                    btnRadio=1 tabindex="0" role="button" name="Gated">Yes</label>
-              <label class="btn btn-outline-primary"
-                    btnRadio=2  tabindex="0" role="button" name="Gated">No</label>
-            </div>
-
-            <p>Main Entrance</p>
-            <div class="btn-group" btnRadioGroup>
-              <label class="btn btn-outline-primary mr-2"
-                    btnRadio=1 tabindex="0" role="button" name="Entrance">East</label>
-              <label class="btn btn-outline-primary mr-2"
-                    btnRadio=2  tabindex="0" role="button" name="Entrance">West</label>
-              <label class="btn btn-outline-primary mr-2"
-                    btnRadio=3  tabindex="0" role="button" name="Entrance">South</label>
-              <label class="btn btn-outline-primary mr-2"
-                    btnRadio=4  tabindex="0" role="button" name="Entrance">North</label>
-            </div>
-
-            <div class="form-group col-12">
-              <label>Description</label>
-              <textarea type="text" class="form-control" rows="6"></textarea>
-            </div>
-
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2)">Back</button>
-            </div>
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(4)">Next</button>
-            </div>
-          </tab>
-
-          <tab heading="Images">Upload Images
-            <div class="form-group col-12">
-              <div class="photo-control">
-                  <button class="mt-5" type="button">Upload</button> <br>
-                  This is under construction
-              </div>
-            </div>
-
-            <div class="form-group col-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3)">Back</button>
-            </div>
-
-            <div class="form-group col-12">
-              <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Submit</button>
-              <button type="reset" class="btn btn-danger ">Reset</button>
-            </div>
-          </tab>
-
-        </tabset>
+      <div class="card-header">
+        <h3>List Your Property</h3>
       </div>
 
+      <div class="card-body">
+
+        <form (ngSubmit)="onSubmit()" #Form="ngForm" >
+          <div>
+            <tabset #listingPropertyFormTabs>
+              <tab heading="Basic info" id="tab1">
+                <p>I want to</p>
+                <div class="btn-group" btnRadioGroup>
+                  <label class="btn btn-outline-primary mr-2" btnRadio=1 role="button" name="SellRent">Sell</label>
+                  <label class="btn btn-outline-primary" btnRadio=2 role="button" name="SellRent">Rent</label>
+                </div>
+
+                <p>BHK</p>
+                <div class="btn-group" btnRadioGroup>
+                  <label *ngFor="let bhk of [1,2,3,4]" class="btn btn-outline-primary mr-2" [btnRadio]="bhk" role="button" name="SellRent">{{bhk}}</label>
+                </div>
+
+                <p>Property Type</p>
+                <div class="btn-group" btnRadioGroup>
+                  <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary mr-2" [btnRadio]="ptype" role="button" name="SellRent">{{ptype}}</label>
+                </div>
+
+                <p>Property Type</p>
+                <div class="btn-group" btnRadioGroup>
+                  <label *ngFor="let ftype of furnishTypes" class="btn btn-outline-primary mr-2" [btnRadio]="ftype" role="button" name="SellRent">{{ftype}}</label>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="name">Building/Society/Project</label>
+                  <input type="text" class="form-control" #propName="ngModel" ngModel name="Name" minlength='5' required>
+                  <span *ngIf="!propName.valid && propName.touched" class="error-block">
+                    <span *ngIf="propName.errors.required">Please provide name</span>
+                    <span *ngIf="propName.errors.minlength">Name must be atleast 5 characters long</span>
+                  </span>
+                </div>
+
+                <div class="form-group col-12">
+                  <label for="price">City</label>
+                  <input type="text" class="form-control" >
+                </div>
+
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1)">Next</button>
+                </div>
+              </tab>
+
+              <tab heading="Pricing and Area">
+                <div class="form-group col-12">
+                  <label>Price (in USD)</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Security (in USD)</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Maintenance (in USD)</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Built Area (in Sqr Feet)</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Carpet Area(in Sqr Feet)</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0)">Back</button>
+                </div>
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2)">Next</button>
+                </div>
+              </tab>
+
+              <tab heading="Address">
+                <div class="form-group col-12">
+                  <label>Floor</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Total Floor</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Address</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Landmark</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1)">Back</button>
+                </div>
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3)">Next</button>
+                </div>
+              </tab>
+
+              <tab heading="Other Details">
+                <p>Ready to Move</p>
+                <div class="btn-group" btnRadioGroup>
+                  <label class="btn btn-outline-primary mr-2" btnRadio=1 role="button" name="RTM">Yes</label>
+                  <label class="btn btn-outline-primary" btnRadio=2 role="button" name="RTM">No</label>
+                </div>
+
+                <div class="form-group col-3">
+                  <label>Possession/Avaialble From</label>
+                  <input type="text"
+                      placeholder="mm/dd/yyyy"
+                      class="form-control"
+                      bsDatepicker [bsConfig]="{containerClass: 'theme-dark-blue'}">
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Age of Property</label>
+                  <input type="text" class="form-control">
+                </div>
+
+                <p>Gated Community</p>
+                <div class="btn-group" btnRadioGroup>
+                  <label class="btn btn-outline-primary mr-2"
+                        btnRadio=1 tabindex="0" role="button" name="Gated">Yes</label>
+                  <label class="btn btn-outline-primary"
+                        btnRadio=2  tabindex="0" role="button" name="Gated">No</label>
+                </div>
+
+                <p>Main Entrance</p>
+                <div class="btn-group" btnRadioGroup>
+                  <label class="btn btn-outline-primary mr-2"
+                        btnRadio=1 tabindex="0" role="button" name="Entrance">East</label>
+                  <label class="btn btn-outline-primary mr-2"
+                        btnRadio=2  tabindex="0" role="button" name="Entrance">West</label>
+                  <label class="btn btn-outline-primary mr-2"
+                        btnRadio=3  tabindex="0" role="button" name="Entrance">South</label>
+                  <label class="btn btn-outline-primary mr-2"
+                        btnRadio=4  tabindex="0" role="button" name="Entrance">North</label>
+                </div>
+
+                <div class="form-group col-12">
+                  <label>Description</label>
+                  <textarea type="text" class="form-control" rows="6"></textarea>
+                </div>
+
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2)">Back</button>
+                </div>
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(4)">Next</button>
+                </div>
+              </tab>
+
+              <tab heading="Images">Upload Images
+                <div class="form-group col-12">
+                  <div class="photo-control">
+                      <button class="mt-5" type="button">Upload</button> <br>
+                      This is under construction
+                  </div>
+                </div>
+
+                <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3)">Back</button>
+                </div>
+
+                <div class="form-group col-12">
+                  <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Submit</button>
+                  <button type="reset" class="btn btn-danger ">Reset</button>
+                </div>
+              </tab>
+
+            </tabset>
+          </div>
 
 
-    </form>
 
+        </form>
+
+      </div>
+
+    </div>
   </div>
-
+  <div class="col-4">
+    <div class="card-header">
+      <h3>Your property preview</h3>
+      <div>
+        <app-property-card [property]="propertyView"></app-property-card>
+      </div>
+    </div>
+  </div>
 </div>
+
+
