@@ -24,7 +24,7 @@
                 </div>
 
                 <p>Property Type</p>
-                <div class="btn-group" btnRadioGroup name='propType' [(ngModel)]="propertyView.Type">
+                <div class="btn-group" btnRadioGroup name='propType' [(ngModel)]="propertyView.PType">
                   <label *ngFor="let ptype of propertyTypes" class="btn btn-outline-primary mr-2" [btnRadio]="ptype" role="button" name="PropType">{{ptype}}</label>
                 </div>
 
