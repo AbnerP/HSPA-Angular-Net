@@ -2,6 +2,10 @@
   min-height: 400px;
 }
 
+.card-body h1{
+  color:#0069d9;
+}
+
 .card-img-wrapper{
   overflow: hidden;
   position: relative;
